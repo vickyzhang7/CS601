@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOMContentLoaded Event Example</title>
+<style>
+    #hoverElement {
+        width: 200px;
+        height: 100px;
+        background-color: lightblue;
+        text-align: center;
+        line-height: 100px;
+        border: 1px solid #ccc;
+        cursor: pointer;
+    }
+
+    #hoverElement:hover {
+        background-color: lightgreen;
+    }
+</style>
+</head>
+<body>
+
+<div id="hoverElement">Hover over me</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // This code will be executed once the DOM content is fully loaded
+
+    // Bind a mouseover event to the element with id 'hoverElement'
+    var hoverElement = document.getElementById('hoverElement');
+    hoverElement.addEventListener('mouseover', function() {
+        hoverElement.innerText = 'Mouse is over me!';
+    });
+
+    // Bind a mouseout event to reset the text when the mouse leaves the element
+    hoverElement.addEventListener('mouseout', function() {
+        hoverElement.innerText = 'Hover over me';
+    });
+});
+</script>
+
+</body>
+</html>

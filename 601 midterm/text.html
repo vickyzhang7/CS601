@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+    body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .card-cont {
+        margin: 0 auto;
+        display: flex;
+        gap: 40px;
+      }
+      .card-cont .card {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 40px;
+        width: 250px;
+        height: 400px;
+        border-radius: 10px;
+        outline: 1px solid rgb(0, 0, 0, 0.1);
+        color: rgb(0, 0, 0);
+        cursor: pointer;
+        transition: 0.4s;
+        overflow: hidden;
+      }
+      .card-cont .card:hover {
+        box-shadow: 0 0 4px 2px rgb(100, 100, 100, 0.1);
+        transform: translateY(-10px);
+        outline: 1px solid rgb(0, 0, 0, 0);
+      }
+      
+      .card-cont .card strong {
+        font-size: 1.1em;
+      }
+      .card-cont .card p {
+        font-size: 0.9em;
+        opacity: 0.8;
+        margin-top: -25px;
+        height: 110px;
+        width: 190px;
+        line-height: 1.5em;
+        text-align: center;
+      }
+      
+      .card-cont .card > div {
+        position: relative;
+        width: 110px;
+        height: 110px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50em;
+        outline: 3px solid rgb(85, 73, 241);
+        outline-offset: 5px;
+      }
+      .card-cont .card > div i {
+        z-index: 1;
+        font-size: 2.7em;
+        color: rgb(85, 73, 241);
+      }
+      
+      .card-cont .card > div::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        left: 0;
+        background-color: rgb(85, 73, 241);
+        opacity: 0.3;
+        transition: 0.4s;
+        border-radius: 50em;
+        z-index: 0;
+      }
+      .card-cont .card:hover > div::after {
+        transform: scale(6);
+      }
+      
+      @media only screen and (max-width: 830px) {
+        .card-cont {
+          flex-direction: column;
+        }
+      }
+    </style>  
+    <link
+      href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="card-cont">
+      <!-- Duplicate the following div to add cards -->
+      <div class="card">
+        <div><i class="bx bxs-dashboard"></i></div>
+        <strong>Dashboard</strong>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+      <div class="card">
+        <div><i class="bx bxs-shield-alt-2"></i></div>
+        <strong>Shield</strong>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+
+      <div class="card">
+        <div><i class="bx bxs-cloud"></i></div>
+        <strong>Cloud</strong>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
+          eiusmod tempor incididunt ut labore et dolore magna aliqua.
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

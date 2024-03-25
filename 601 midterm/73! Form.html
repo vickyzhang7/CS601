@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<style>
+/* Optional: Style placeholders to match your design */
+::placeholder {
+    color: #a9a9a9; /* Light grey placeholder text */
+    opacity: 1; /* No transparency */
+}
+/* Style the input fields */
+input, textarea {
+    width: 100%; /* Full-width inputs */
+    padding: 12px; /* Some padding */
+    margin: 8px 0; /* Some space between the inputs */
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure padding doesn't affect the box size */
+}
+
+/* Style the submit button */
+input[type=submit] {
+    background-color: #4CAF50; /* Green background */
+    color: white; /* White text */
+    padding: 14px 20px; /* Some padding */
+    margin: 8px 0; /* Some space between the inputs */
+    border: none; /* No border */
+    border-radius: 4px; /* Rounded borders */
+    cursor: pointer; /* Pointer/hand icon */
+}
+
+/* Add some hover effects to buttons */
+input[type=submit]:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+/* Style for the modal */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal content */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* Close button */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+
+<h2>Contact Form</h2>
+
+<form name="contactForm" onsubmit="return validateForm()" method="post">
+    <input type="text" id="name" name="name" placeholder="Name"><br><br>
+    <input type="email" id="email" name="email" placeholder="Email"><br><br>
+    <input type="text" id="subject" name="subject" placeholder="Subject"><br><br>
+    <textarea id="message" name="message" placeholder="Message" style="height:200px"></textarea><br><br>
+    <input type="submit" value="Send Message">
+</form>
+
+<!-- The modal -->
+<div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div id="successMessage" style="color:green;">
+            Submission successful!
+        </div>
+    </div>
+
+</div>
+
+<script>
+// JavaScript validation function as before
+function validateForm() {
+    // If all validations have passed, show a success message on the page
+    var modal = document.getElementById('myModal');
+    modal.style.display = "block";
+    return false; // Return false to prevent actual form submission in this example
+}
+
+// Get the close button element
+var closeButton = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the close button, close the modal
+closeButton.onclick = function() {
+    var modal = document.getElementById('myModal');
+    modal.style.display = "none";
+}
+</script>
+
+</body>
+</html>
+

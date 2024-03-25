@@ -1,0 +1,44 @@
+<!-- https://www.w3schools.com/js/js_events.asp -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dynamic Event Binding</title>
+<style>
+    .box {
+        width: 100px;
+        height: 100px;
+        background-color: lightblue;
+        margin: 10px;
+        text-align: center;
+        line-height: 100px;
+        cursor: pointer;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div class="box" id="div1" placeholder="Placeholder 1" title="Title 1">1</div>
+    <div class="box" id="div2" placeholder="Placeholder 2" title="Title 2">2</div>
+    <div class="box" id="div3" placeholder="Placeholder 3" title="Title 3">3</div>
+    <div class="box" id="div4" placeholder="Placeholder 4" title="Title 4">4</div>
+    <div class="box" id="div5" placeholder="Placeholder 5" title="Title 5">5</div>
+</div>
+<section id="output"></section>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var click_action = document.querySelectorAll(".box");
+        click_action.forEach(function(div) {
+            div.addEventListener("click", function() {
+                var output = document.getElementById("output");
+                var timestamp = new Date()
+                output.innerHTML = "At " + timestamp + " this is the unique title for this div in my page: " + div.getAttribute("title");
+            });
+        });
+    });
+</script>
+</body>
+</html>

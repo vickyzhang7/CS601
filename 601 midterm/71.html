@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Form</title>
+<script>
+function validateForm() {
+  var name = document.forms["contactForm"]["name"].value;
+  var email = document.forms["contactForm"]["email"].value;
+  var subject = document.forms["contactForm"]["subject"].value;
+  var message = document.forms["contactForm"]["message"].value;
+  
+  if (name == "") {
+    alert("Name must be filled out");
+    return false;
+  }
+  if (email == "") {
+    alert("Email must be filled out");
+    return false;
+  }
+  if (subject == "") {
+    alert("Subject must be filled out");
+    return false;
+  }
+  if (message == "") {
+    alert("Message must be filled out");
+    return false;
+  }
+  // Simple email validation
+  var emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+  if (!emailRegex.test(email)) {
+    alert("Invalid email format");
+    return false;
+  }
+  
+  // If we get here, all validations have passed
+  return true;
+}
+</script>
+</head>
+<body>
+
+<h2>Contact Form</h2>
+
+<form name="contactForm" onsubmit="return validateForm()" method="post">
+  <label for="name">Name</label>
+  <input type="text" id="name" name="name"><br><br>
+  
+  <label for="email">Email</label>
+  <input type="text" id="email" name="email"><br><br>
+  
+  <label for="subject">Subject</label>
+  <input type="text" id="subject" name="subject"><br><br>
+  
+  <label for="message">Message</label>
+  <textarea id="message" name="message" style="height:200px"></textarea><br><br>
+  
+  <input type="submit" value="Send Message">
+</form>
+
+</body>
+</html>

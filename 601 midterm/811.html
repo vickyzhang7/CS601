@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOMContentLoaded Event Example</title>
+</head>
+<body>
+
+<button id="myButton">Click me</button>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // This code will be executed once the DOM content is fully loaded
+
+    // Bind a click event to the button element
+    var button = document.getElementById('myButton');
+    button.addEventListener('click', function() {
+        alert('Button clicked!');
+    });
+});
+</script>
+
+</body>
+</html>
+

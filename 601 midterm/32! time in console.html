@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Div Events</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div id="div_1" title="Div 1">Div 1</div>
+    <div id="div_2" title="Div 2">Div 2</div>
+    <div id="div_3" title="Div 3">Div 3</div>
+    <div id="div_4" title="Div 4">Div 4</div>
+    <div id="div_5" title="Div 5">Div 5</div>
+
+    <div id="messages"></div>
+
+    <script>
+        $(document).ready(function() {
+            // Attach click and mouseover event handlers
+            for (let i = 1; i <= 5; i++) {
+                $(`#div_${i}`).click(function() {
+                    const timestamp = new Date().toLocaleString('en-US', { timeZone: 'America/New_York' });
+                    console.log(`At ${timestamp} ${this.id}`);
+                }).click(function() {
+                    $('#messages').text(this.title+" TIME IN CONSOLE");
+                });
+            }
+        });
+    </script>
+</body>
+</html>

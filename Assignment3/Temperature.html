@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Temperature Conversion</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1 style="color: rgb(17, 10, 233); font-size: large;">Temperature Conversion</h1>
+    <form id="tempForm">
+        <label>temperature in fahrenheit</label><br>
+        <input type="text" id="temperature" name="temperature" placeholder="Enter temperature" style="margin-top: 8px;" oninput="this.value = this.value.replace(/[^0-9.-]/g, '');"> °F<br>
+        <input type="submit" value="Submit" style="margin-top: 8px;">
+    </form>
+    <div id="result" style="color: rgb(226, 39, 176); font-size: medium;"></div>
+    <script type="module" src="temperatureConverter.js"></script>
+  </body>
+</html>

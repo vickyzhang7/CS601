@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Chinese Animal Symbol</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1 style="color: brown; font-weight: bold;">Chinese Animal Symbol</h1>
+    <div> 
+        <p>Please enter a integer form 1948 to 2024</p>   
+        <input type="number" style="width: 100px; margin-bottom: 30px;"  id="years" min="1948" max="2024">
+    </div>
+
+    <div class="display-flex">
+        <button id="search" style="color: burlywood;"> Search </button>
+        <button id="reset" style="color: aquamarine;"> Reset </button>
+    </div>
+
+    <div id="animalSummary" style="display: none;">
+        <h3 style="color: black; font-weight: bold;" id="name"> All Animal Summary </h3>
+        <p style="color: black ; font-size: medium; font-weight: bold;" id="introduction">The Chinese zodiac, or shengxiao, refers to the circle of 12 animals that measure the cycles of time. Signs or animals are determined by the lunar year in which you were born.
+
+            Legend has it that a god beckoned all animals to bid him farewell before his departure from Earth. Only 12 of them, namely the rat, ox, tiger, rabbit, dragon, snake, horse, goat, monkey, rooster, dog and pig arrived, with each given a place of honor in a year based on the order of arrival.</p>
+        <img src="./Symbol/Summary.jpeg" width="100" height="100" id="link" alt="Summary Image">
+    </div>
+
+    <script>
+        document.getElementById("search").addEventListener("click", searchAnimal);
+        document.getElementById("reset").addEventListener("click", resetAnimal)
+        function searchAnimal(){
+            const yearInput=parseInt(document.getElementById("years").value);
+            const animalSummaryDiv = document.getElementById("animalSummary");
+            const nameElement = document.getElementById("name");
+            const introductionElement = document.getElementById("introduction");
+            const linkElement = document.getElementById("link");
+            animalSummaryDiv.style.display = "block";
+            
+            switch(true){
+                case (yearInput < 1948 || yearInput > 2024 ): 
+                    nameElement.innerText = "No data found for that year. Unknown Year";
+                    introductionElement.innerText = "Sorry, information for this year is not available. Please enter a integer from 1948 to 2024 ";
+                    linkElement.src = "./Symbol/Summary.jpeg";
+                    break;
+                case yearInput % 12 === 0:
+                    nameElement.innerText="Year of MONKEY";
+                    introductionElement.innerText="People born in the Year of the Monkey are the erratic geniuses of the cycle. Clever, skillful, and flexible, they are remarkably inventive and original and can solve the most difficult problems with ease. There are few fields in which Monkey people wouldn't be successful but they have a disconcerting habit of being too agreeable. They want to do things now, and if they cannot get started immediately, they become discouraged and sometimes leave their projects. Although good at making decisions, they tend to look down on others. Having common sense, Monkey people have a deep desire for knowledge and have excellent memories. Monkey people are strong willed but their anger cools quickly. They are most compatible with the Dragon and Rat.";
+                    linkElement.src= "./Symbol/MONKEY.png";
+                    break;
+                case yearInput % 12 === 1:
+                    nameElement.innerText="Year of ROOSTER";
+                    introductionElement.innerText="People born in the Year of the Rooster are deep thinkers, capable, and talented. They like to be busy and are devoted beyond their capabilities and are deeply disappointed if they fail. People born in the Rooster Year are often a bit eccentric, and often have rather difficult relationship with others. They always think they are right and usually are! They frequently are loners and though they give the outward impression of being adventurous, they are timid. Rooster people's emotions like their fortunes, swing very high to very low. They can be selfish and too outspoken, but are always interesting and can be extremely brave. They are most compatible with Ox, Snake, and Dragon.";
+                    linkElement.src= "./Symbol/ROOSTER.png";
+                    break;
+                case yearInput % 12 === 2:
+                    nameElement.innerText="Year of DOG";
+                    introductionElement.innerText="People born in the Year of the Dog possess the best traits of human nature. They have a deep sense of loyalty, are honest, and inspire other people´s confidence because they know how to keep secrets. But Dog People are somewhat selfish, terribly stubborn, and eccentric. They care little for wealth, yet somehow always seem to have money. They can be cold emotionally and sometimes distant at parties. They can find fault with many things and are noted for their sharp tongues. Dog people make good leaders. They are compatible with those born in the Years of the Horse, Tiger, and Rabbit.";
+                    linkElement.src= "./Symbol/DOG.png";
+                    break;
+                case yearInput % 12 === 3:
+                    nameElement.innerText="Year of PIG";
+                    introductionElement.innerText="Studious and gallant with tremendous inner strength. Will not retreat from goals. Quiet, but always well informed. Chooses few friends, but is kind, affectionate and loyal for life. Compatible with rabbits and sheep. The Pig's intuitions if followed will pay off handsomely and the rest of the year bodes well in fortune and luck.";
+                    linkElement.src= "./Symbol/PIG.png";
+                    break;
+                case yearInput % 12 === 4:
+                    nameElement.innerText="Year of RAT";
+                    introductionElement.innerText="People born in the Year of the Rat are noted for their charm and attraction for the opposite sex. They work hard to achieve their goals, acquire possessions, and are likely to be perfectionists. They are basically thrifty with money. Rat people are easily angered and love to gossip. Their ambitions are big, and they are usually very successful. They are most compatible with people born in the years of the Dragon, Monkey, and Ox.";
+                    linkElement.src= "./Symbol/RAT.png";
+                    break;
+                case yearInput % 12 === 5:
+                    nameElement.innerText="Year of OX";
+                    introductionElement.innerText="People born in the Year of the Ox are patient, speak little, and inspire confidence in others. They tend, however, to be eccentric, and bigoted, and they anger easily. They have fierce tempers and although they speak little, when they do they are quite eloquent. Ox people are mentally and physically alert. Generally easy-going, they can be remarkably stubborn, and they hate to fail or be opposed. They are most compatible with Snake, Rooster, and Rat people.";
+                    linkElement.src= "./Symbol/OX.png";
+                    break;
+                case yearInput % 12 === 6:
+                    nameElement.innerText="Year of TIGER";
+                    introductionElement.innerText="Tiger people are sensitive, given to deep thinking, capable of great sympathy. They can be extremely short-tempered, however. Other people have great respect for them, but sometimes tiger people come into conflict with older people or those in authority. sometimes Tiger people cannot make up their minds, which can result in a poor, hasty decision or a sound decision arrived at too late. They are suspicious of others, but they are courageous and powerful. Tigers are most compatible with Horses, Dragons, and Dogs";
+                    linkElement.src= "./Symbol/TIGER.png";
+                    break;
+                case yearInput % 12 === 7:
+                    nameElement.innerText="Year of RABBIT";
+                    introductionElement.innerText="People born in the Year of the Rabbit are articulate, talented, and ambitious. They are virtuous, reserved, and have excellent taste. Rabbit people are admired, trusted, and are often financially lucky. They are fond of gossip but are tactful and generally kind. Rabbit people seldom lose their temper. They are clever at business and being conscientious, never back out of a contract. They would make good gamblers for they have the uncanny gift of choosing the right thing. However, they seldom gamble, as they are conservative and wise. They are most compatible with those born in the years of the Sheep, Pig, and Dog.";
+                    linkElement.src= "./Symbol/RABBIT.png";
+                    break;
+                case yearInput % 12 === 8:
+                    nameElement.innerText="Year of DRAGON";
+                    introductionElement.innerText="People born in the Year of the Dragon are healthy, energetic, excitable, short-tempered, and stubborn. They are also honest, sensitive, brave, and they inspire confidence and trust. Dragon people are the most eccentric of any in the eastern zodiac. They neither borrow money nor make flowery speeches, but they tend to be soft-hearted which sometimes gives others an advantage over them. They are compatible with Rats, Snakes, Monkeys, and Roosters.";
+                    linkElement.src= "./Symbol/DRAGON.png";
+                    break;
+                case yearInput % 12 === 9:
+                    nameElement.innerText="Year of SNAKE";
+                    introductionElement.innerText="People born in the Year of the Snake are deep. They say little and possess great wisdom. They never have to worry about money; they are financially fortunate. Snake people are often quite vain, selfish, and a bit stingy. Yet they have tremendous sympathy for others and try to help those less fortunate. Snake people tend to overdo, since they have doubts about other people's judgment and prefer to rely on themselves. They are determined in whatever they do and hate to fail. Although calm on the surface, they are intense and passionate. Snake people are usually good-looking and sometimes have martial problems because they are fickle. They are most compatible with the Ox and Rooster.";
+                    linkElement.src= "./Symbol/SNAKE.png";
+                    break;
+                case yearInput % 12 === 10:
+                    nameElement.innerText="Year of HORSE";
+                    introductionElement.innerText="People born in the Year of the Horse are popular. They are cheerful, skillful with money, and perceptive, although they sometimes talk too much. The are wise, talented, good with their hands, and sometimes have a weakness for members of the opposite sex. They are impatient and hot-blooded about everything except their daily work. They like entertainment and large crowds. They are very independent and rarely listen to advice. They are most compatible with Tigers, Dogs, and Sheep.";
+                    linkElement.src= "./Symbol/HORSE.png";
+                    break;
+                case yearInput % 12 === 11:
+                    nameElement.innerText="Year of RAM";
+                    introductionElement.innerText="People born in the Year of Ram are elegant and highly accomplished in the arts. They seem to be, at first glance, better off than those born in the zodiac's other years. But ram year people are often shy, pessimistic, and puzzled about life. They are usually deeply religious, yet timid by nature. Sometimes clumsy in speech, they are always passionate about what they do and what they believe in. Ram people never have to worry about having the best in life for their abilities make money for them, and they are able to enjoy the creature comforts that they like. Ram people are wise, gentle, and compassionate. They are compatible with Rabbits, Pigs, and Horses.";
+                    linkElement.src= "./Symbol/GOAT.png";
+                    break;
+            }
+
+        }
+        function resetAnimal(){
+            document.getElementById("years").value = "";
+            const animalSummaryDiv = document.getElementById("animalSummary");
+            const nameElement = document.getElementById("name");
+            const introductionElement = document.getElementById("introduction");
+            const linkElement = document.getElementById("link");
+            animalSummaryDiv.style.display = "none";
+
+        }
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  </body>
+</html>

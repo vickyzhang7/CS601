@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recipe Application</title>
+  <style>
+    body {
+      display: flex;
+    }
+    #recipeForm {
+      margin-right: 20px;
+      margin-left: 50px;
+    }
+    #savedRecipes {
+      flex-grow: 1;
+      padding-left: 20px;
+    }
+    #imagePreviewContainer {
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #imagePreviewContainer img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    #recipeList button {
+      margin-left: 10px; 
+      background-color: rgb(241, 234, 18); 
+      color:black; 
+    }
+    special-front {
+      color: rgb(43, 0, 255);
+    }
+
+
+  </style>
+</head>
+<body>
+  <div id="recipeForm">
+    <h1>Recipe Application</h1>
+
+    <label for="recipeTitle">Title:</label>
+    <input type="text" id="recipeTitle" minlength="1" maxlength="125" required><br><br><br>
+
+    <label for="recipeDescription">Description:</label>
+    <textarea id="recipeDescription" maxlength="255" required></textarea><br><br><br>
+
+    <label for="recipeImageURL">Image URL:</label>
+    <input type="text" id="recipeImageURL"><br><br>
+
+    <div id="imagePreviewContainer"></div>
+
+
+    <button id="addStep">Add Step</button><br><br>
+
+    <div id="stepsContainer"></div>
+
+    <button id="createRecipe">Create Recipe</button>
+  </div>
+
+  <div id="savedRecipes">
+    <h2>Saved Recipes:</h2>
+    <ul id="recipeList"></ul>
+  </div>
+
+  <script>
+    // Use an array to store recipes, a list
+    let recipes = [];
+
+    // Use map() to store steps
+    const stepsMap = new Map();
+
+    // Clear localStorage on every page load
+    window.onload = function() {
+      // refresh
+      localStorage.clear();
+      recipes = JSON.parse(localStorage.getItem('recipes')) || [];
+      displaySavedRecipes();
+    };
+
+    document.getElementById('addStep').addEventListener('click', addStep);
+
+    function addStep() {
+      const stepId = Date.now().toString();
+      const step = { id: stepId, content: '' };
+      stepsMap.set(stepId, step);
+      addStepToUI(step);
+    }
+
+    function addStepToUI(step) {
+      const stepContainer = document.getElementById('stepsContainer');
+      const stepElement = document.createElement('div');
+      stepElement.innerHTML = `
+        <textarea id="step${step.id}" rows="4" cols="50">${step.content}</textarea>
+        <button class="deleteStep" data-id="${step.id}">Delete</button>
+      `;
+      stepContainer.appendChild(stepElement);
+
+      // Add event listener for delete button
+      stepElement.querySelector('.deleteStep').addEventListener('click', function() {
+        stepsMap.delete(step.id);
+        stepElement.remove();
+      });
+
+      // ***Add event listener for textarea input
+      const stepTextarea = stepElement.querySelector(`#step${step.id}`);
+      stepTextarea.addEventListener('input', function() {
+        step.content = this.value; // Update step content when input changes
+      });
+    }
+
+    document.getElementById('createRecipe').addEventListener('click', function() {
+      if (document.querySelectorAll('#stepsContainer > div').length === 0) {
+        alert("You must have at least one step before saving the recipe.");
+        return;
+      }
+      const title = document.getElementById('recipeTitle').value;
+      const description = document.getElementById('recipeDescription').value;
+      const imageUrl = document.getElementById('recipeImageURL').value;
+      const steps = Array.from(stepsMap.values());
+
+      const recipe = {
+        title,
+        description,
+        imageUrl,
+        steps
+      };
+
+      // Add the new recipe to the recipes array
+      recipes.push(recipe);
+
+      // Save updated recipes to localStorage
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+
+      alert('Recipe created successfully!');
+      
+      // Clear input fields
+      document.getElementById('recipeTitle').value = '';
+      document.getElementById('recipeDescription').value = '';
+      document.getElementById('recipeImageURL').value = '';
+
+      // Clear steps container
+      document.getElementById('stepsContainer').innerHTML = '';
+
+      // Clear image preview container
+      clearImagePreview();
+
+      // Clear steps map
+      stepsMap.clear();
+
+      // Display saved recipes
+      displaySavedRecipes();
+    });
+
+    // Function to display saved recipes
+    function displaySavedRecipes() {
+      const recipeList = document.getElementById('recipeList');
+      recipeList.innerHTML = ''; // Clear existing list
+      // add None
+      if (recipes.length === 0) {
+        const noneItem = document.createElement('special-front');
+        noneItem.textContent = "None";
+        recipeList.appendChild(noneItem);
+      } else {
+        recipes.forEach((recipe, index) => {
+          const recipeItem = document.createElement('li');
+          recipeItem.textContent = recipe.title;
+          
+          // Add delete button
+          const deleteButton = document.createElement('button');
+          deleteButton.textContent = "Delete";
+          deleteButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            deleteRecipe(index);
+          });
+          recipeItem.appendChild(deleteButton);
+          
+          // Add edit button
+          const editButton = document.createElement('button');
+          editButton.textContent = "Edit";
+          editButton.addEventListener('click', function(event) {
+            event.stopPropagation();
+            loadRecipe(index);
+          });
+          recipeItem.appendChild(editButton);
+
+          // Add click event to load recipe
+          recipeItem.addEventListener('click', function() {
+            loadRecipe(index);
+          });
+          
+          recipeList.appendChild(recipeItem);
+        });
+      }
+    }
+
+    function deleteRecipe(index) {
+      recipes.splice(index, 1);
+      localStorage.setItem('recipes', JSON.stringify(recipes));
+      displaySavedRecipes();
+    }
+
+    function loadRecipe(index) {
+      const recipe = recipes[index];
+      document.getElementById('recipeTitle').value = recipe.title;
+      document.getElementById('recipeDescription').value = recipe.description;
+      document.getElementById('recipeImageURL').value = recipe.imageUrl;
+
+      // Clear steps container
+      const stepContainer = document.getElementById('stepsContainer');
+      stepContainer.innerHTML = '';
+
+      // Load steps
+      recipe.steps.forEach(step => {
+        stepsMap.set(step.id, step);
+        addStepToUI(step);
+        // Fill step content
+        document.getElementById(`step${step.id}`).value = step.content;
+      });
+
+      // Display recipe image
+      displayRecipeImage(recipe.imageUrl);
+    }
+
+    // Function to display recipe image
+    function displayRecipeImage(url) {
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+      // Clear previous image if any
+      imagePreviewContainer.innerHTML = '';
+      
+      const imagePreview = document.createElement('img');
+      imagePreview.src = url;
+      imagePreview.alt = 'Recipe Image';
+      imagePreviewContainer.appendChild(imagePreview);
+    }
+
+    // Function to clear image preview container
+    function clearImagePreview() {
+      const imagePreviewContainer = document.getElementById('imagePreviewContainer');
+      imagePreviewContainer.innerHTML = '';
+    }
+
+    // Event listener for input change to dynamically display image
+    document.getElementById('recipeImageURL').addEventListener('input', function() {
+      const imageUrl = this.value.trim();
+      displayRecipeImage(imageUrl);
+    });
+  </script>
+</body>
+</html>

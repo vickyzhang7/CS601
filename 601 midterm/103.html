@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expedia Date Picker Test</title>
+<style>
+    /* central
+    #messageBox {
+        display: none;
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    } */
+    #messageBox {
+        display: none;
+        width: 300px;
+        padding: 10px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        text-align: center;
+        margin-top: 10px; /* Adjust this value to set the distance between the inputs and the message box */
+    }
+</style>
+</head>
+<body>
+
+<label for="departDate">Departing On:</label>
+<input type="date" id="departDate" placeholder="Departing On">
+
+<label for="returnDate">Returning On:</label>
+<input type="date" id="returnDate" placeholder="Returning On">
+
+<button onclick="calculateTravelDuration()">Calculate</button>
+
+<div id="messageBox"></div>
+
+<script>
+function calculateTravelDuration() {
+    const departDateInput = document.getElementById("departDate");
+    const returnDateInput = document.getElementById("returnDate");
+
+    const departDate = new Date(departDateInput.value);
+    const returnDate = new Date(returnDateInput.value);
+
+    const messageBox = document.getElementById("messageBox");
+
+    if (returnDate < departDate) {
+        messageBox.innerText = "It appears your dates are inverted. Please correct.";
+        messageBox.style.display = "block";
+        return;
+    }
+
+    const timeDifference = returnDate.getTime() - departDate.getTime();
+    const daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    if (daysDifference <= 0) {
+        messageBox.innerText = "It appears your travel duration is invalid. Please make sure your dates are correct.";
+        messageBox.style.display = "block";
+        return;
+    }
+
+    if (daysDifference > 365) {
+        messageBox.innerText = "It appears your travel is greater than 1 year. Please make sure this is correct.";
+        messageBox.style.display = "block";
+        return;
+    }
+
+    if (daysDifference >= 30) {
+        messageBox.innerText = "You have a 30+ day duration. Please make sure your dates are correct.";
+        messageBox.style.display = "block";
+        return;
+    }
+
+    if (daysDifference === 1) {
+        messageBox.innerText = "It appears you are coming back on the same day as your departure. Please make sure this is correct.";
+        messageBox.style.display = "block";
+        return;
+    }
+
+    messageBox.innerText = "You have a travel duration of " + daysDifference + " days.";
+    messageBox.style.display = "block";
+}
+</script>
+
+</body>
+</html>

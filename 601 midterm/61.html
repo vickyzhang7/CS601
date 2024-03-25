@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JavaScript Event Handling Examples</title>
+</head>
+<body>
+
+<!-- Inline event handler function -->
+<button onclick="alert('Hello, world!')">Click me (Inline)</button>
+
+<!-- Using addEventListener method -->
+<button id="myButton1">Click me (addEventListener)</button>
+
+<!-- Defining a named function and attaching it to an event -->
+<button id="myButton2">Click me (Named function)</button>
+
+<!-- Using arrow functions -->
+<button id="myButton3">Click me (Arrow function)</button>
+
+<!-- Adding event listeners using named function references -->
+<button id="myButton4">Click me (Named function reference)</button>
+
+<!-- Using onmouseover event -->
+<div onmouseover="alert('Mouse over!')">Hover over me (onmouseover)</div>
+
+<!-- Using onmouseout event -->
+<div onmouseout="alert('Mouse out!')">Mouse out of me (onmouseout)</div>
+
+<!-- Using onmousemove event -->
+<div onmousemove="console.log('Mouse moving!')">Move your mouse over me (onmousemove)</div>
+
+<!-- Using onkeydown event -->
+<input type="text" onkeydown="console.log('Key pressed!')"> (onkeydown)
+
+<!-- Using onchange event -->
+<select onchange="alert('Option changed!')">
+  <option value="1">Option 1</option>
+  <option value="2">Option 2</option>
+</select> (onchange)
+
+<script>
+  // Using addEventListener method
+  document.getElementById('myButton1').addEventListener('click', function() {
+    alert('Hello, world!');
+  });
+
+  // Defining a named function and attaching it to an event
+  function handleClick() {
+    alert('Hello, world!');
+  }
+  document.getElementById('myButton2').onclick = handleClick;
+
+  // Using arrow functions
+  document.getElementById('myButton3').addEventListener('click', () => {
+    alert('Hello, world!');
+  });
+
+  // Adding event listeners using named function references
+  function handleClick4() {
+    alert('Hello, world!');
+  }
+  document.getElementById('myButton4').addEventListener('click', handleClick4);
+</script>
+
+</body>
+</html>

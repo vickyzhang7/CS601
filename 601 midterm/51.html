@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clickable Paragraphs</title>
+<style>
+  .clickable-paragraph {
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+
+  .clicked {
+    border: 1px dotted blue;
+  }
+</style>
+</head>
+<body>
+
+<p class="clickable-paragraph">Paragraph 1</p>
+<p class="clickable-paragraph">Paragraph 2</p>
+<p class="clickable-paragraph">Paragraph 3</p>
+<p class="clickable-paragraph">Paragraph 4</p>
+<p class="clickable-paragraph">Paragraph 5</p>
+<p >Paragraph 6</p>
+<p >Paragraph 7</p>
+<p >Paragraph 8</p>
+<p >Paragraph 9</p>
+<p >Paragraph 10</p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    var paragraphs = document.querySelectorAll('.clickable-paragraph');
+
+    paragraphs.forEach(function(paragraph) {
+      paragraph.addEventListener('click', function() {
+        if (paragraph.classList.contains('clicked')) {
+          paragraph.classList.remove('clicked');
+        } else {
+          paragraph.classList.add('clicked');
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

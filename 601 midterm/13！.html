@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertical Striped Circle</title>
+<style>
+  .circle1 {
+    position: relative;
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: rotate(45deg); 
+  }
+  .circle2 {
+    position: relative;
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    border-color: aquamarine;
+    border-style: solid;
+    border-width: 10px;
+  }
+  .circle3 {
+    position: relative;
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    transform: rotate(135deg);
+  }
+  .star {
+      position: relative;
+      width: 200px; 
+      height: 200px;
+      border-radius: 50%;
+      /* border-color: aqua; 
+      border-width: 20px;
+      border-style: solid; */
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+      overflow: hidden;
+  }
+  .rectangle {
+    position: relative;
+    width: 200px; /* Adjust the width of the rectangle */
+    height: 100px; /* Adjust the height of the rectangle */
+    overflow: hidden;
+  }
+
+  .stripe {
+    position: absolute;
+    width: 20%; /* Adjust for stripe thickness */
+    height: 100%; /* Full height for vertical stripes */
+    top: 0;
+  }
+
+  .stripe:nth-child(1) {
+    background-color: #FFA500; /* Gold */
+    left: 0;
+  }
+
+  .stripe:nth-child(2) {
+    background-color: #ffff00; /* Khaki */
+    left: 20%; /* Position based on the thickness of the stripe */
+  }
+
+  .stripe:nth-child(3) {
+    background-color: #00008B; /* SteelBlue */
+    left: 40%;
+  }
+
+  .stripe:nth-child(4) {
+    background-color: #006300; /* OliveDrab */
+    left: 60%;
+  }
+
+  .stripe:nth-child(5) {
+    background-color: #8B0000; /* FireBrick */
+    left: 80%;
+  }
+</style>
+</head>
+<body>
+
+<div class="circle1">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+<div class="circle2">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+
+
+<div class="star">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+<div class="rectangle">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+<div class="circle3">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+</body>
+</html>

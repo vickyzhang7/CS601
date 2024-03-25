@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+<head>
+    <title>Fetch API Example: GET Images</title>
+</head>
+<body>
+    <h1>Using Fetch API with GET</h1>
+    <select>
+        <option value="1">Choose how many images to pull down?</option>
+        <option value="2">2</option>
+        <option value="4">4</option>
+        <option value="6">6</option>
+    </select>    
+    <div id="result"></div>    
+    <script>
+        document.querySelector("select").addEventListener("change", event => {
+            document.querySelector("#result").innerHTML = "";
+            const targetUrl = `https://dog.ceo/api/breeds/image/random/${event.target.value}`;
+            fetch(targetUrl)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network Error ');
+                }
+                return response.json();
+            })
+            .then(data => {
+                data.message.forEach(image => {
+                    document.querySelector("#result").innerHTML += `<img src="${image}" alt="dog"/>`;
+                });
+            })
+            .catch(error => {
+                console.error('There was a problem with your fetch operation:', error);
+            })
+            .finally(() => {
+                console.log("complete");
+            });
+            // document.querySelector("select").addEventListener("change", event => {
+            //     document.querySelector("#result").innerHTML = "";
+            //     const targetUrl = `https://dog.ceo/api/breeds/image/random/${event.target.value}`;
+            //     axios.get(targetUrl)
+            //     .then(response => {
+            //         response.data.message.forEach(image => { document.querySelector("#result").innerHTML += `<img src="${image}" alt="dog"/>`; });
+            //     }).catch( error => { console.error(error); 
+            //     }).finally( () => { console.log("complete");
+            //     });
+            // });
+        });
+    </script>
+</body>
+</html>

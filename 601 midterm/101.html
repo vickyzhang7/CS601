@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expedia Date Picker Test</title>
+<link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+<script>
+  $(document).ready(function() {
+    // Initialize datepicker for departing and returning dates
+    $("#departDate").datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeMonth: true,
+      changeYear: true,
+      onSelect: function(selectedDate) {
+        $("#returnDate").datepicker('option', 'minDate', selectedDate);
+        calculateTravelDuration();
+      }
+    });
+
+    $("#returnDate").datepicker({
+      dateFormat: 'yy-mm-dd',
+      changeMonth: true,
+      changeYear: true,
+      onSelect: function(selectedDate) {
+        $("#departDate").datepicker('option', 'maxDate', selectedDate);
+        calculateTravelDuration();
+      }
+    });
+
+    function calculateTravelDuration() {
+      var departDate = $("#departDate").datepicker('getDate');
+      var returnDate = $("#returnDate").datepicker('getDate');
+
+      if (departDate && returnDate) {
+        var duration = Math.abs(returnDate - departDate) / (1000 * 60 * 60 * 24);
+
+        if (returnDate < departDate) {
+          alert("It appears your dates are inverted. Please correct.");
+        } else if (duration > 365) {
+          alert("It appears your travel is greater than 1 year. Please make sure this is correct.");
+        } else if (duration >= 30) {
+          alert("You have a 30+ day duration. Please make sure your dates are correct.");
+        } else if (duration === 0) {
+          alert("It appears you are coming back on the same day as your departure. Please make sure this is correct.");
+        } else {
+          // No special cases, no message to display
+        }
+      }
+    }
+  });
+</script>
+</head>
+<body>
+
+<label for="departDate">Departing On:</label>
+<input type="text" id="departDate" placeholder="Departing On">
+
+<label for="returnDate">Returning On:</label>
+<input type="text" id="returnDate" placeholder="Returning On">
+
+</body>
+</html>

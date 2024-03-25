@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Expedia Date Picker Test</title>
+</head>
+<body>
+
+<label for="departDate">Departing On:</label>
+<input type="date" id="departDate" placeholder="Departing On">
+
+<label for="returnDate">Returning On:</label>
+<input type="date" id="returnDate" placeholder="Returning On">
+
+<button onclick="calculateTravelDuration()">Calculate</button>
+
+<script>
+function calculateTravelDuration() {
+    var departDateInput = document.getElementById("departDate");
+    var returnDateInput = document.getElementById("returnDate");
+
+    var departDate = new Date(departDateInput.value);
+    var returnDate = new Date(returnDateInput.value);
+
+    if (returnDate < departDate) {
+        alert("It appears your dates are inverted. Please correct.");
+        return;
+    }
+
+    var timeDifference = returnDate.getTime() - departDate.getTime();
+    var daysDifference = Math.ceil(timeDifference / (1000 * 3600 * 24));
+
+    if (daysDifference <= 0) {
+        alert("It appears your travel duration is invalid. Please make sure your dates are correct.");
+        return;
+    }
+
+    if (daysDifference > 365) {
+        alert("It appears your travel is greater than 1 year. Please make sure this is correct.");
+        return;
+    }
+
+    if (daysDifference >= 30) {
+        alert("You have a 30+ day duration. Please make sure your dates are correct.");
+        return;
+    }
+
+    if (daysDifference === 1) {
+        alert("It appears you are coming back on the same day as your departure. Please make sure this is correct.");
+        return;
+    }
+
+    alert("You have a travel duration of " + daysDifference + " days.");
+}
+</script>
+
+</body>
+</html>

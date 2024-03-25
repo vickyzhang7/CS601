@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Striped Circle</title>
+<style>
+  .circle {
+    position: relative;
+    width: 200px; /* Adjust the size of the circle */
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+  }
+
+  .stripe {
+    position: absolute;
+    width: 50%; /* Half width for 180 degree stripes */
+    height: 100%;
+    top: 0;
+    transform-origin: right center;
+  }
+
+  .stripe:nth-child(1) {
+    background-color: #FFD700; /* Gold */
+    transform: rotate(0deg);
+  }
+
+  .stripe:nth-child(2) {
+    background-color: #F0E68C; /* Khaki */
+    transform: rotate(60deg); /* Adjust the angle for correct positioning */
+  }
+
+  .stripe:nth-child(3) {
+    background-color: #4682B4; /* SteelBlue */
+    transform: rotate(120deg);
+  }
+
+  .stripe:nth-child(4) {
+    background-color: #6B8E23; /* OliveDrab */
+    transform: rotate(180deg);
+  }
+
+  .stripe:nth-child(5) {
+    background-color: #B22222; /* FireBrick */
+    transform: rotate(240deg);
+  }
+</style>
+</head>
+<body>
+
+<div class="circle">
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+  <div class="stripe"></div>
+</div>
+
+</body>
+</html>

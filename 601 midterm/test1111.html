@@ -1,0 +1,75 @@
+<!-- time
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript HTML Events</h1>
+<h2>The onclick Attribute</h2>
+
+<button onclick="document.getElementById('demo').innerHTML=Date()">The time is?</button>
+<button onclick="document.getElementById('demo').innerHTML=Date()">The time2 is?</button>
+
+<p id="demo"></p>
+
+</body>
+</html>-->
+
+
+
+<!-- 10 p and 5 p can click -->
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("button1").click(function(){
+    $("button1").toggleClass("blue");
+  });
+});
+$(document).ready(function(){
+  $("button2").click(function(){
+    $("button2").toggleClass("blue");
+  });
+});
+$(document).ready(function(){
+  $("button3").click(function(){
+    $("button3").toggleClass("blue");
+  });
+});
+$(document).ready(function(){
+  $("button4").click(function(){
+    $("button4").toggleClass("blue");
+  });
+});
+$(document).ready(function(){
+  $("button5").click(function(){
+    $("button5").toggleClass("blue");
+  });
+});
+</script>
+<style>
+.blue {
+  color: transparent;
+  background-color: transparent;
+  border-style: dotted;
+  border-width: 1px;
+  border-color: blue;
+}
+</style>
+</head>
+<body>
+
+<div class="container" style="flex-direction: column; display: flex;">
+    <button1>Toggle class</button1>
+    <button2>Toggle class</button2>
+    <button3>Toggle class</button3>
+    <button4>Toggle class</button4>
+    <button5>Toggle class</button5>
+    <button6>Toggle class</button6>
+    <button6>Toggle class</button6>
+    <button6>Toggle class</button6>
+    <button6>Toggle class</button6>
+    <button6>Toggle class</button6>
+</div>
+</body>
+</html>

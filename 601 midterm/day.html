@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Day of the Week Finder</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    #container {
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h1>Day of the Week Finder</h1>
+    <input type="date" id="inputDate">
+    <button onclick="getDayOfWeek()">Find Day</button>
+    <p id="result"></p>
+</div>
+
+<script>
+    function getDayOfWeek() {
+        var inputDate = document.getElementById("inputDate").value;
+        var date = new Date(inputDate);
+        var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+        var dayOfWeek = days[date.getDay()];
+        document.getElementById("result").innerText = "The day is: " + dayOfWeek;
+    }
+</script>
+</body>
+</html>
