@@ -1,0 +1,91 @@
+.container {
+    background-color: #cbdceb;
+    padding: 10px;
+}
+
+.search-box {
+    background-color: #fbfcfc;
+    border-radius: 5px;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.search-box input[type="text"] {
+    border: none;
+    outline: none;
+    flex: 1;
+    padding: 8px;
+    margin-right: 10px;
+}
+
+.search-box button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.city-info {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+h1 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+}
+.city-header {
+    position: relative;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 1.5rem; /* Adjust the size as necessary */
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 10px; /* Gives space for the click area */
+    color: #000; /* Or any color that fits your design */
+}
+
+.body-content {
+    padding: 10px;
+}
+
+.city-name {
+    font-size: 1.5rem;
+    color: rgb(22, 140, 225);
+}
+
+.usa-flag {
+    margin-right: 5px;
+    vertical-align: middle;
+    width: 28px; 
+    height: 22px; 
+}
+
+.time {
+    font-size: 1.2rem;
+    font-weight: bold;
+    float: right;
+}
+
+select, .time-input {
+    font-size: 16px; 
+    padding: 10px; 
+    margin: 5px 0; 
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
+}
+
+.time-input {
+    width: 60px; 
+    display: inline-block; 
+    text-align: center; 
+}
