@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Filter Array Example</title>
+    <script>
+        function filterValuesOver100() {
+            // Original array with mixed content
+            const array = [10, 78, 121, 454, 3, 'a', '&67', '18b', '9-', 'OO8'];
+
+            // Filter out values that are numeric and over 100
+            const filteredArray = array.filter(item => {
+                // Attempt to convert to a number
+                const num = parseFloat(item);
+
+                // Check if the conversion to number is valid and greater than 100
+                return !isNaN(num) && num > 100;
+            });
+
+            console.log("Filtered values over 100:", filteredArray);
+
+            // Display result on the page
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = "Filtered values over 100: " + filteredArray.join(", ");
+        }
+    </script>
+</head>
+<body>
+    <h1>Filter Array Example</h1>
+    <button onclick="filterValuesOver100()">Get Values Over 100</button>
+    <div id="result">
+        <!-- Result will be displayed here -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Using ES Module</title>
+    <script type="module">
+        // Importing the functions from the greetings module
+        import { sayHi, sayBye } from './greetings.js'; // Ensure the module path is correct
+
+        function displayGreetings() {
+            const hiMessage = sayHi(); // Call sayHi function
+            const byeMessage = sayBye(); // Call sayBye function
+
+            // Get reference to the result div
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `<p>${hiMessage}</p><p>${byeMessage}</p>`; // Display messages
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Set up the button to call the displayGreetings function
+            const button = document.getElementById("show-greetings");
+            button.addEventListener("click", displayGreetings);
+        });
+    </script>
+</head>
+<body>
+    <h1>Using JavaScript Modules</h1>
+    <button id="show-greetings">Show Greetings</button>
+    <div id="result">
+        <!-- Greetings will be displayed here -->
+    </div>
+</body>
+</html>

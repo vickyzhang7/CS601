@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Extract Book Names from XML</title>
+    <script>
+        function extractBookNames() {
+            // XML fragment as a string
+            const xmlString = `
+                <books>
+                    <book>
+                        <name>This is your life. Enjoy it. Donald Trump</name>
+                    </book>
+                    <book>
+                        <name>The art and zen of hamburgers. Frank Beans</name>
+                    </book>
+                </books>
+            `;
+
+            // Parse the XML string into an XML document
+            const parser = new DOMParser();
+            const xmlDoc = parser.parseFromString(xmlString, "application/xml");
+
+            // Get all 'name' elements within 'book' tags
+            const nameElements = xmlDoc.getElementsByTagName("name");
+
+            // Create an array of the book names
+            const bookNames = [];
+            for (let i = 0; i < nameElements.length; i++) {
+                bookNames.push(nameElements[i].textContent.trim());
+            }
+
+            // Display the book names in the result div
+            const resultDiv = document.getElementById("result");
+            resultDiv.textContent = "Book names: " + bookNames.join(", ");
+        }
+    </script>
+</head>
+<body>
+    <h1>Extract Book Names from XML</h1>
+    <button onclick="extractBookNames()">Get Book Names</button>
+    <div id="result">
+        <!-- Result will be displayed here -->
+    </div>
+</body>
+</html>

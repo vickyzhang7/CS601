@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Domain Data</title>
+</head>
+<body>
+    <table id="domain-table">
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Zone</th>
+                <th>CreateTime</th>
+                <th>UpdateTime</th>
+                <th>IsDead</th>
+                <th>A Records</th>
+            </tr>
+        </thead>
+        <tbody id="domain-table-body"></tbody>
+    </table>
+
+    <script>
+        async function fetchData() {
+            try {
+                const response = await fetch('http://localhost:3000/getData');
+                const data = await response.json();
+
+                const domainTableBody = document.getElementById('domain-table-body');
+
+                data.domains.forEach(domain => {
+                    const row = document.createElement('tr');
+                    row.innerHTML = `
+                        <td>${domain.domain}</td>
+                        <td>${domain.zone}</td>
+                        <td>${domain.create_time}</td>
+                        <td>${domain.update_time}</td>
+                        <td>${domain.isDead}</td>
+                        <td>${domain.a}</td>
+                    `;
+                    domainTableBody.appendChild(row);
+                });
+            } catch (error) {
+                console.error('获取数据时出错:', error);
+            }
+        }
+
+        // 调用函数以获取数据并构建表格
+        fetchData();
+    </script>
+</body>
+</html>

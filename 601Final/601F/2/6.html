@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch JSONPlaceholder Data</title>
+    <script>
+        function fetchAndDisplayPosts() {
+            const url = "https://jsonplaceholder.typicode.com/posts";
+
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json(); // Convert response to JSON
+                })
+                .then((posts) => {
+                    const list = document.getElementById("post-list");
+
+                    // Clear any previous content
+                    list.innerHTML = "";
+
+                    // Loop through the posts and add them to the list
+                    posts.forEach((post) => {
+                        const listItem = document.createElement("li");
+                        listItem.innerHTML = `<strong>${post.title}</strong><br>${post.body}`;
+                        list.appendChild(listItem);
+                    });
+                })
+                .catch((error) => {
+                    console.error("Failed to fetch data:", error);
+                });
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            // Fetch and display posts when the page is loaded
+            fetchAndDisplayPosts();
+        });
+    </script>
+</head>
+<body>
+    <h1>Posts from JSONPlaceholder</h1>
+    <ul id="post-list">
+        <!-- Fetched posts will be displayed here -->
+    </ul>
+</body>
+</html>

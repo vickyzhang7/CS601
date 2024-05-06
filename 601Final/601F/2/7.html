@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Domain Search Results</title>
+    <script>
+        // Asynchronous function to fetch domain data and build a table
+        async function fetchDomainsAndBuildTable() {
+            const url = "https://api.domainsdb.info/v1/domains/search?domain=facebook&zone=com";
+
+            try {
+                // Fetch data from the URL and await its completion
+                const response = await fetch(url);
+
+                // Check if the response is successful
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                // Parse the response as JSON and get the domain data
+                const data = await response.json();
+
+                // Get reference to the table body
+                const tableBody = document.getElementById("domains-table-body");
+
+                // Clear existing content in the table body
+                tableBody.innerHTML = "";
+
+                // Loop through the domains and create table rows
+                data.domains.forEach((domain) => {
+                    const row = document.createElement("tr");
+
+                    // Create cells for each piece of data
+                    const domainCell = document.createElement("td");
+                    domainCell.textContent = domain.domain;
+
+                    const createDateCell = document.createElement("td");
+                    createDateCell.textContent = domain.create_date;
+
+                    const updateDateCell = document.createElement("td");
+                    updateDateCell.textContent = domain.update_date;
+
+                    const countryCell = document.createElement("td");
+                    countryCell.textContent = domain.country || "N/A"; // Handle undefined data
+
+                    // Append cells to the row
+                    row.appendChild(domainCell);
+                    row.appendChild(createDateCell);
+                    row.appendChild(updateDateCell);
+                    row.appendChild(countryCell);
+
+                    // Append the row to the table body
+                    tableBody.appendChild(row);
+                });
+
+            } catch (error) {
+                console.error("Error fetching domain data:", error);
+            }
+        }
+
+        // Fetch domain data when the page is loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            fetchDomainsAndBuildTable();
+        });
+    </script>
+</head>
+<body>
+    <h1>Domain Search Results</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Domain</th>
+                <th>Create Date</th>
+                <th>Update Date</th>
+                <th>Country</th>
+            </tr>
+        </thead>
+        <tbody id="domains-table-body">
+            <!-- The domain data will be displayed here -->
+        </tbody>
+    </table>
+</body>
+</html>

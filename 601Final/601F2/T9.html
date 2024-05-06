@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Usage</title>
+</head>
+<body>
+    <h1>Module Usage</h1>
+    <div id="output"></div>
+
+    <script type="module">
+        // Import functions from the module
+        import { sayHi, sayBye } from './T9.js';
+
+        // Call sayHi function and display result
+        const outputDiv = document.getElementById('output');
+        outputDiv.textContent = `${sayHi()}\n`;
+        // Call sayBye function and append result
+        outputDiv.textContent += `${sayBye()}`;
+    </script>
+</body>
+</html>

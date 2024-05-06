@@ -1,0 +1,68 @@
+<!-- 
+    // Define a function within the module
+export function greet(name) {
+    console.log(`Hello, ${name}!`);
+}
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Example</title>
+</head>
+<body>
+    <script type="module">
+        // Import the greet function from the module
+        import { greet } from './module.js';
+
+        // Invoke the greet function
+        greet("John");
+    </script>
+</body>
+</html>
+
+
+
+<!-- 
+    // Define a function within the module to calculate square
+export function square(x) {
+    return x * x;
+}
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Module Example</title>
+</head>
+<body>
+    <h1>Square Calculator</h1>
+    <div>
+        <label for="numberInput">Enter a number:</label>
+        <input type="number" id="numberInput">
+        <button onclick="calculateSquare()">Calculate Square</button>
+    </div>
+    <div id="result"></div>
+
+    <script type="module">
+        // Import the square function from the module
+        import { square } from './math.js';
+
+        // Function to calculate square and display result
+        function calculateSquare() {
+            const numberInput = document.getElementById('numberInput').value;
+            const result = square(parseInt(numberInput));
+            document.getElementById('result').innerText = `Square: ${result}`;
+        }
+    </script>
+</body>
+</html>
+
+
+

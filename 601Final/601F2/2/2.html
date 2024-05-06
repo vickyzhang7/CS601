@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fetch API Example</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // URL to fetch data from
+            const url = "https://jsonplaceholder.typicode.com/todos/10";
+
+            // Function to fetch data and update the HTML
+            fetch(url)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! Status: ${response.status}`);
+                    }
+                    return response.json(); // Parse JSON from response
+                })
+                .then((data) => {
+                    // Get the element to display the data
+                    const list = document.getElementById("todo-list");
+
+                    // Add data to the ordered list
+                    for (const [key, value] of Object.entries(data)) {
+                        const listItem = document.createElement("li");
+                        listItem.textContent = `${key}: ${value}`;
+                        list.appendChild(listItem);
+                    }
+                })
+                .catch((error) => {
+                    console.error("An error occurred:", error);
+                });
+        });
+    </script>
+</head>
+<body>
+    <h1>Todo Item</h1>
+    <ol id="todo-list">
+        <!-- The fetched data will be displayed here -->
+    </ol>
+</body>
+</html>

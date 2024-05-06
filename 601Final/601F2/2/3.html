@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form with Validation</title>
+    <style>
+        /* Simple styling for error messages */
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        // Function to validate the form
+        function validateForm(event) {
+            // Get references to form elements
+            const textArea = document.getElementById("description");
+            const textField = document.getElementById("username");
+            const dateField = document.getElementById("date");
+
+            // Get references to error message elements
+            const errorTextArea = document.getElementById("error-description");
+            const errorTextField = document.getElementById("error-username");
+            const errorDateField = document.getElementById("error-date");
+
+            // Reset previous error messages
+            errorTextArea.textContent = "";
+            errorTextField.textContent = "";
+            errorDateField.textContent = "";
+
+            let isValid = true; // Assume form is valid initially
+
+            // Validation for the textarea (non-empty)
+            if (textArea.value.trim() === "") {
+                isValid = false;
+                errorTextArea.textContent = "Description must not be empty.";
+            }
+
+            // Validation for the text field (non-empty, alphanumeric, at least 3 characters)
+            const usernamePattern = /^[a-zA-Z0-9]+$/;
+            if (textField.value.trim() === "" || !usernamePattern.test(textField.value) || textField.value.length < 3) {
+                isValid = false;
+                errorTextField.textContent = "Username must be at least 3 characters and alphanumeric.";
+            }
+
+            // Validation for the date field (must be in the future)
+            const currentDate = new Date();
+            const selectedDate = new Date(dateField.value);
+            if (selectedDate <= currentDate) {
+                isValid = false;
+                errorDateField.textContent = "Date must be in the future.";
+            }
+
+            // If the form is not valid, prevent submission
+            if (!isValid) {
+                event.preventDefault(); // Prevent form submission
+            }
+
+            return isValid;
+        }
+    </script>
+</head>
+<body>
+    <h1>Form with Validation</h1>
+    <form onsubmit="validateForm(event)">
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description"></textarea>
+            <span id="error-description" class="error"></span>
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username">
+            <span id="error-username" class="error"></span>
+        </div>
+        <div>
+            <label for="date">Select a future date:</label>
+            <input type="date" id="date" name="date">
+            <span id="error-date" class="error"></span>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+</body>
+</html>

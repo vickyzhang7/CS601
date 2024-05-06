@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Values Over 100</title>
+</head>
+<body>
+    <h1>Values Over 100</h1>
+    <button onclick="getValuesOver100()">Get Values Over 100</button>
+    <ul id="result"></ul>
+
+    <script>
+        function getValuesOver100() {
+            const array = [10, 78, 121, 454, 3, 'a', '&67', '18b', '9-', 'OO8'];
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = '';
+
+            const valuesOver100 = array.filter(item => typeof item === 'number' && item > 100);
+
+            valuesOver100.forEach(value => {
+                const li = document.createElement('li');
+                li.textContent = value;
+                resultElement.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>

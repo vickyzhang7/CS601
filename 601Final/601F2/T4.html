@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Page with Media Queries</title>
+    <style>
+        /* Standard font size */
+        body {
+            font-size: 14px;
+        }
+
+        /* Media query for page width less than 900px */
+        @media screen and (max-width: 900px) {
+            body {
+                font-size: 10px;
+            }
+        }
+
+        /* Hide images when printing */
+        @media print {
+            img {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Responsive Page with Media Queries</h1>
+    <p>This is a sample paragraph. Resize the browser window to see the font size change when the width is less than 900px.</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/85/Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg/640px-Tour_Eiffel_Wikimedia_Commons_%28cropped%29.jpg" alt="Tower">
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Media Queries Example</title>
+    <style>
+        /* Default font size for the page */
+        body {
+            font-size: 14px;
+        }
+
+        /* Media query to change font size based on screen width */
+        @media (max-width: 900px) {
+            body {
+                font-size: 10px;
+            }
+        }
+
+        /* Media query for printing to hide images */
+        @media print {
+            img {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Media Queries Example</h1>
+    <p>This is an example of a page with media queries.</p>
+    <p>The font size is smaller on narrow screens.</p>
+    <img src="https://www.dreamstime.com/stock-image-dag-frog-cartoon-puppy-scared-closed-his-eyes-to-image35370041" alt="Sample image">
+    <p>On wider screens, the font size is larger.</p>
+    <p>Images will be hidden when printing this page.</p>
+</body>
+</html>

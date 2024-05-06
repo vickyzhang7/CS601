@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Validation</title>
+</head>
+<body>
+    <h1>Form Validation</h1>
+    <form id="myForm" onsubmit="return validateForm()">
+        <div>
+            <label for="message">Message:</label><br>
+            <textarea id="message" name="message" rows="4" cols="50"></textarea>
+            <div id="messageError" style="color: red;"></div>
+        </div>
+        <div>
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name">
+            <div id="nameError" style="color: red;"></div>
+        </div>
+        <div>
+            <label for="date">Date:</label><br>
+            <input type="date" id="date" name="date">
+            <div id="dateError" style="color: red;"></div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function validateForm() {
+            // Get form inputs
+            const message = document.getElementById('message').value.trim();
+            const name = document.getElementById('name').value.trim();
+            const date = document.getElementById('date').value;
+
+            // Reset error messages
+            document.getElementById('messageError').textContent = '';
+            document.getElementById('nameError').textContent = '';
+            document.getElementById('dateError').textContent = '';
+
+            // Validate each field
+            if (message.length < 5) {
+                document.getElementById('messageError').textContent = 'Message must be at least 5 characters long';
+                return false;
+            }
+
+            if (!/^[a-zA-Z]+$/.test(name)) {
+                document.getElementById('nameError').textContent = 'Name can only contain letters';
+                return false;
+            }
+
+            if (!isValidDate(date)) {
+                document.getElementById('dateError').textContent = 'Invalid date';
+                return false;
+            }
+
+            // Form is valid, submit
+            return true;
+        }
+
+        // Function to validate date format (YYYY-MM-DD)
+        function isValidDate(date) {
+            const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
+            return dateRegex.test(date);
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async/Await Example</title>
+    <script>
+        // Simulated async function that returns a promise
+        function fetchData() {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    const data = { message: "Data retrieved!" };
+                    resolve(data); // Simulate successful data fetch
+                }, 2000); // Simulated delay of 2 seconds
+            });
+        }
+
+        async function showData() {
+            // Using async/await to handle promises
+            try {
+                const data = await fetchData(); // Wait for the promise to resolve
+                document.getElementById("result").textContent = data.message;
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+    </script>
+</head>
+<body>
+    <h1>Using Async/Await</h1>
+    <button onclick="showData()">Fetch Data</button>
+    <div id="result"> <!-- Result will be displayed here --> </div>
+</body>
+</html>

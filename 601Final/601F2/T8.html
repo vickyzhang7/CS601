@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Extract Book Names</title>
+</head>
+<body>
+    <h1>Book Names</h1>
+    <button onclick="extractBookNames()">Get Book Names</button>
+    <div id="bookNames"></div>
+
+    <script>
+        function extractBookNames() {
+            const xmlString = `
+                <books>
+                    <book>
+                        <name>This is your life. Enjoy it. - Donald Trump</name>
+                    </book>
+                    <book>
+                        <name>The art and zen of hamburgers - Frank Beans</name>
+                    </book>
+                </books>
+            `;
+
+            // Create a new DOMParser object
+            const parser = new DOMParser();
+            // Parse the XML string
+            const xmlDoc = parser.parseFromString(xmlString, 'text/xml');
+
+            // Get all name elements
+            const nameElements = xmlDoc.querySelectorAll('name');
+
+            // Extract and display book names
+            const bookNamesDiv = document.getElementById('bookNames');
+            bookNamesDiv.innerHTML = '';
+
+            nameElements.forEach(name => {
+                // Extract the book name from name element text content
+                const bookName = name.textContent.split(' - ')[0].trim();
+                
+                // Create a div element for each book name
+                const div = document.createElement('div');
+                div.textContent = bookName;
+                
+                // Append the div to the bookNamesDiv
+                bookNamesDiv.appendChild(div);
+            });
+        }
+    </script>
+</body>
+</html>
